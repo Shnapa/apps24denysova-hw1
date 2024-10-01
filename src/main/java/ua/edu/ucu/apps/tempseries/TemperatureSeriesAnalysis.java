@@ -16,7 +16,8 @@ public class TemperatureSeriesAnalysis {
     public TemperatureSeriesAnalysis(double[] temps) {
         for (double temp : temps) {
             if (temp < ABSOLUTE_ZERO) {
-                throw new InputMismatchException("Temperature below absolute zero detected");
+                throw new 
+                InputMismatchException("Temperature below absolute zero detected");
             }
         }
         temperatures = temps.clone();
@@ -25,7 +26,8 @@ public class TemperatureSeriesAnalysis {
 
     public double average() {
         if (size == 0) {
-            throw new IllegalArgumentException("Temperature series is empty");
+            throw new 
+            IllegalArgumentException("Temperature series is empty");
         }
         double sum = 0;
         for (double temp : temperatures) {
@@ -36,12 +38,13 @@ public class TemperatureSeriesAnalysis {
 
     public double deviation() {
         if (size == 0) {
-            throw new IllegalArgumentException("Temperature series is empty");
+            throw new 
+            IllegalArgumentException("Temperature series is empty");
         }
         double avg = average();
         double sum = 0;
         for (double temp : temperatures) {
-            sum += (temp - avg) * (temp - avg); // Use x * x instead of Math.pow(x, 2)
+            sum += (temp - avg) * (temp - avg);
         }
         return Math.sqrt(sum / size);
     }
@@ -145,7 +148,8 @@ public class TemperatureSeriesAnalysis {
     public int addTemps(double ... temps) {
         for (double temp : temps) {
             if (temp < ABSOLUTE_ZERO) {
-                throw new InputMismatchException("Temperature below absolute zero detected");
+                throw new 
+                InputMismatchException("Temperature below absolute zero detected");
             }
         }
         if (size + temps.length > temperatures.length) {
