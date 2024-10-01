@@ -101,8 +101,8 @@ public class TemperatureSeriesAnalysis {
         }
         double closestTemp = temperatures[0];
         for (double temp : temperatures) {
-            if (Math.abs(temp - tempValue) < 
-                Math.abs(closestTemp - tempValue)) {
+            if (Math.abs(temp - tempValue) 
+                <  Math.abs(closestTemp - tempValue)) {
                 closestTemp = temp;
             }
         }
