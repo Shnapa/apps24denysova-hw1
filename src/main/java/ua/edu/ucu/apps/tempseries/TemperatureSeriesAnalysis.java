@@ -85,8 +85,8 @@ public class TemperatureSeriesAnalysis {
         }
         double closestTemp = temperatures[0];
         for (double temp : temperatures) {
-            if (Math.abs(temp) < Math.abs(closestTemp) || 
-                (Math.abs(temp) == Math.abs(closestTemp) 
+            if (Math.abs(temp) < Math.abs(closestTemp) 
+                || (Math.abs(temp) == Math.abs(closestTemp) 
                  && temp > closestTemp)) {
                 closestTemp = temp;
             }
@@ -101,7 +101,8 @@ public class TemperatureSeriesAnalysis {
         }
         double closestTemp = temperatures[0];
         for (double temp : temperatures) {
-            if (Math.abs(temp - tempValue) < Math.abs(closestTemp - tempValue)) {
+            if (Math.abs(temp - tempValue) < 
+                Math.abs(closestTemp - tempValue)) {
                 closestTemp = temp;
             }
         }
@@ -117,21 +118,35 @@ public class TemperatureSeriesAnalysis {
     }
 
     private double[] filterTemps(double tempValue, boolean lessThan) {
-        int count = 0;
-        for (double temp : temperatures) {
-            if (lessThan ? temp < tempValue : temp >= tempValue) {
+    int count = 0;
+    for (double temp : temperatures) {
+        if (lessThan) {
+            if (temp < tempValue) {
+                count++;
+            }
+        } else {
+            if (temp >= tempValue) {
                 count++;
             }
         }
-        double[] result = new double[count];
-        int index = 0;
-        for (double temp : temperatures) {
-            if (lessThan ? temp < tempValue : temp >= tempValue) {
+    }
+
+    double[] result = new double[count];
+    int index = 0;
+    for (double temp : temperatures) {
+        if (lessThan) {
+            if (temp < tempValue) {
+                result[index++] = temp;
+            }
+        } else {
+            if (temp >= tempValue) {
                 result[index++] = temp;
             }
         }
-        return result;
     }
+    return result;
+}
+
 
     public void reset() {
         temperatures = new double[0];
