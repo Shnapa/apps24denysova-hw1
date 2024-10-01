@@ -39,7 +39,7 @@ jobs:
       run: ls -l target/checkstyle-result.xml
 
     - name: Run Checkstyle
-      uses: jwgmeligmeyling/checkstyle-github-action@v1.0.0  # Use a specific version
+      uses: jwgmeligmeyling/checkstyle-github-action@latest  # Or use the specific tag found
       with:
         path: '**/checkstyle-result.xml'
 
