@@ -3,6 +3,8 @@ package ua.edu.ucu.apps.tempseries;
 import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
+    private static final double ABSOLUTE_ZERO = -273.0;
+    private static final int MAX_LINE_LENGTH = 80;
     private double[] temperatures;
     private int size;
 
@@ -13,7 +15,7 @@ public class TemperatureSeriesAnalysis {
 
     public TemperatureSeriesAnalysis(double[] temps) {
         for (double temp : temps) {
-            if (temp < -273) {
+            if (temp < ABSOLUTE_ZERO) {
                 throw new InputMismatchException("Temperature below absolute zero detected");
             }
         }
@@ -39,7 +41,7 @@ public class TemperatureSeriesAnalysis {
         double avg = average();
         double sum = 0;
         for (double temp : temperatures) {
-            sum += Math.pow(temp - avg, 2);
+            sum += (temp - avg) * (temp - avg); // Use x * x instead of Math.pow(x, 2)
         }
         return Math.sqrt(sum / size);
     }
@@ -76,7 +78,7 @@ public class TemperatureSeriesAnalysis {
         }
         double closestTemp = temperatures[0];
         for (double temp : temperatures) {
-            if (Math.abs(temp) < Math.abs(closestTemp) ||
+            if (Math.abs(temp) < Math.abs(closestTemp) || 
                 (Math.abs(temp) == Math.abs(closestTemp) && temp > closestTemp)) {
                 closestTemp = temp;
             }
@@ -142,7 +144,7 @@ public class TemperatureSeriesAnalysis {
 
     public int addTemps(double ... temps) {
         for (double temp : temps) {
-            if (temp < -273) {
+            if (temp < ABSOLUTE_ZERO) {
                 throw new InputMismatchException("Temperature below absolute zero detected");
             }
         }
@@ -156,4 +158,3 @@ public class TemperatureSeriesAnalysis {
         return size;
     }
 }
-
