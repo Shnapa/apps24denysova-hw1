@@ -14,20 +14,20 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TemperatureSeriesAnalysis(double[] temps) {
-        for (double temp : temps) {
-            if (temp < ABSOLUTE_ZERO) {
-                throw new 
-                InputMismatchException("Temperature below absolute zero detected");
-            }
+    for (double temp : temps) {
+        if (temp < ABSOLUTE_ZERO) {
+            throw new InputMismatchException(
+                "Temperature below absolute zero detected");
         }
-        temperatures = temps.clone();
-        size = temps.length;
+    }
+    temperatures = temps.clone();
+    size = temps.length;
     }
 
     public double average() {
         if (size == 0) {
-            throw new 
-            IllegalArgumentException("Temperature series is empty");
+            throw new IllegalArgumentException(
+                "Temperature series is empty");
         }
         double sum = 0;
         for (double temp : temperatures) {
@@ -39,7 +39,8 @@ public class TemperatureSeriesAnalysis {
     public double deviation() {
         if (size == 0) {
             throw new 
-            IllegalArgumentException("Temperature series is empty");
+            IllegalArgumentException(
+                "Temperature series is empty");
         }
         double avg = average();
         double sum = 0;
@@ -51,7 +52,8 @@ public class TemperatureSeriesAnalysis {
 
     public double min() {
         if (size == 0) {
-            throw new IllegalArgumentException("Temperature series is empty");
+            throw new IllegalArgumentException(
+                "Temperature series is empty");
         }
         double minTemp = temperatures[0];
         for (double temp : temperatures) {
@@ -64,7 +66,8 @@ public class TemperatureSeriesAnalysis {
 
     public double max() {
         if (size == 0) {
-            throw new IllegalArgumentException("Temperature series is empty");
+            throw new IllegalArgumentException(
+                "Temperature series is empty");
         }
         double maxTemp = temperatures[0];
         for (double temp : temperatures) {
@@ -77,12 +80,14 @@ public class TemperatureSeriesAnalysis {
 
     public double findTempClosestToZero() {
         if (size == 0) {
-            throw new IllegalArgumentException("Temperature series is empty");
+            throw new IllegalArgumentException(
+                "Temperature series is empty");
         }
         double closestTemp = temperatures[0];
         for (double temp : temperatures) {
             if (Math.abs(temp) < Math.abs(closestTemp) || 
-                (Math.abs(temp) == Math.abs(closestTemp) && temp > closestTemp)) {
+                (Math.abs(temp) == Math.abs(closestTemp) 
+                 && temp > closestTemp)) {
                 closestTemp = temp;
             }
         }
@@ -91,7 +96,8 @@ public class TemperatureSeriesAnalysis {
 
     public double findTempClosestToValue(double tempValue) {
         if (size == 0) {
-            throw new IllegalArgumentException("Temperature series is empty");
+            throw new IllegalArgumentException(
+                "Temperature series is empty");
         }
         double closestTemp = temperatures[0];
         for (double temp : temperatures) {
@@ -140,16 +146,19 @@ public class TemperatureSeriesAnalysis {
 
     public TempSummaryStatistics summaryStatistics() {
         if (size == 0) {
-            throw new IllegalArgumentException("Temperature series is empty");
+            throw new IllegalArgumentException(
+                "Temperature series is empty");
         }
-        return new TempSummaryStatistics(average(), deviation(), min(), max());
+        return new TempSummaryStatistics(
+            average(), deviation(), min(), max());
     }
 
     public int addTemps(double ... temps) {
         for (double temp : temps) {
             if (temp < ABSOLUTE_ZERO) {
                 throw new 
-                InputMismatchException("Temperature below absolute zero detected");
+                InputMismatchException(
+                    "Temperature below absolute zero detected");
             }
         }
         if (size + temps.length > temperatures.length) {
